@@ -1,9 +1,8 @@
 from sqlalchemy import Column, Integer, String, Double, ForeignKey, Text
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-
 
 class Student(Base):
     __tablename__ = 'student'
@@ -27,18 +26,19 @@ class Student(Base):
     photo_house = Column(String(255),nullable=False)
     photo_family = Column(String(255),nullable=False)
     photo_std = Column(String(255),nullable=False)
-    address_hose = relationship("AddressHose", back_populates="student")
-    address_ez = relationship("AddressEZ", back_populates="student")
+    time_create = Column(Integer,nullable=False)
+    address_house = relationship('AddressHouse', back_populates="student", uselist=False)
+    address_ez = relationship("AddressEZ", back_populates="student", uselist=False)
     address_part_time = relationship(
-        "AddressPartTime", back_populates="student")
-    father = relationship("Father", back_populates="student")
-    mother = relationship("Mother", back_populates="student")
-    living_with = relationship("LivingWith", back_populates="student")
-    support = relationship("Support", back_populates="student")
+        "AddressPartTime", back_populates="student", uselist=False)
+    father = relationship("Father", back_populates="student", uselist=False)
+    mother = relationship("Mother", back_populates="student", uselist=False)
+    living_with = relationship("LivingWith", back_populates="student", uselist=False)
+    support = relationship("Support", back_populates="student", uselist=False)
     information_history = relationship(
-        "InformationHistory", back_populates="student")
-    part_time_job = relationship("PartTimeJob", back_populates="student")
-    payment_history = relationship("PaymentHistory", back_populates="student")
+        "InformationHistory", back_populates="student", uselist=False)
+    part_time_job = relationship("PartTimeJob", back_populates="student", uselist=False)
+    payment_history = relationship("PaymentHistory", back_populates="student", uselist=False)
 
 
 class AddressHouse(Base):

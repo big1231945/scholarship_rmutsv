@@ -1,9 +1,10 @@
 import mysql.connector
 from dotenv import load_dotenv
 import os
-
 from sqlalchemy import create_engine
+
 from Models import Base
+
 load_dotenv()
 MYSQL_HOST = os.getenv('MYSQL_HOST')
 MYSQL_USER = os.getenv('MYSQL_USER')
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     d.close()
     engine = create_engine( pool_size=5,max_overflow=10,pool_recycle=3600, url=f"mysql+mysqlconnector://{MYSQL_USER}:{MYSQL_PASS}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}")
     Base.metadata.create_all(engine)
+    print("Suscess")
 
 
 
